@@ -114,7 +114,8 @@ class SharedMemory:
                 raise
 
             from .resource_tracker import register
-            register(self._name, "shared_memory")
+            if create: # who creates, who releases. Useful when in multi independent processes
+                register(self._name, "shared_memory")
 
         else:
 
